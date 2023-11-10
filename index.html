@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nathan's Page</title>
+  </head>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+    }
+
+    .headerDiv {
+      height: 100vh;
+      max-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    header {
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+    }
+
+    .container {
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .section {
+      width: 100%;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .section:nth-child(odd) {
+      flex-direction: row;
+    }
+
+    .section:nth-child(even) {
+      flex-direction: row-reverse;
+    }
+
+    img {
+      width: 30%;
+      max-width: 50%;
+      height: auto;
+      display: block;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0.5, 0.2);
+      /* opacity: 0; */
+    }
+
+    p {
+      width: 50%;
+      padding: 20px;
+    }
+
+    footer {
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 10px;
+    }
+
+    html {
+      scroll-snap-type: y mandatory;
+      scroll-behavior: smooth;
+    }
+
+    .snapBox {
+      scroll-snap-align: start;
+    }
+
+    .scrollFade {
+      transition: opacity 0.8s ease-in-out;
+    }
+
+    .social-links {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 20px;
+    }
+
+    .social-link {
+      margin: 0 10px;
+    }
+
+    .social-link a img {
+      width: 100px;
+      height: auto;
+    }
+  </style>
+
+  <body>
+    <header>
+      <div class="headerDiv snapBox" id="section0">
+        <!-- <a href="#section1">scroll</a> -->
+        <h1 class="scrollFade">Welcome to Nathan's Page</h1>
+        <div class="social-links">
+          <div class="social-link">
+            <a
+              href="https://www.linkedin.com/in/nathan-clark-4a9b6417a/"
+              target="_blank"
+            >
+              <img
+                id="linkedin-logo"
+                src="/images/linkedin.png"
+                alt="LinkedIn Logo"
+              />
+            </a>
+          </div>
+          <div class="social-link">
+            <a
+              href="https://www.linkedin.com/in/nathan-clark-4a9b6417a/"
+              target="_blank"
+            >
+              <img id="my-photo" src="/images//nathan.png" alt="My Photo" />
+            </a>
+          </div>
+          <div class="social-link">
+            <a href="https://github.com/nclarkicstar" target="_blank">
+              <img
+                id="github-logo"
+                src="/images/github.png"
+                alt="GitHub Logo"
+              />
+            </a>
+          </div>
+        </div>
+      </div>
+    </header>
+    <div class="container">
+      <div class="section snapBox" id="section1">
+        <img
+          class="scrollFade"
+          src="https://i.postimg.cc/vTHfyVFV/IMG-7453.jpg"
+          alt="Placeholder Image"
+        />
+        <p class="scrollFade">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet
+          debitis eaque porro. Eum eveniet ab tenetur rem modi blanditiis
+          repudiandae fugit incidunt vel soluta nisi similique exercitationem
+          ipsam quam deleniti, iure fuga nihil repellendus recusandae! Odit esse
+          expedita excepturi aspernatur provident quos atque natus. Soluta,
+          animi voluptas! Vel, magnam rem!
+        </p>
+      </div>
+      <div class="section snapBox" id="section2">
+        <img
+          class="scrollFade"
+          src="https://i.postimg.cc/7PVnRx8z/IMG-9400.jpg"
+          alt="Placeholder Image"
+        />
+        <p class="scrollFade">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet
+          debitis eaque porro. Eum eveniet ab tenetur rem modi blanditiis
+          repudiandae fugit incidunt vel soluta nisi similique exercitationem
+          ipsam quam deleniti, iure fuga nihil repellendus recusandae! Odit esse
+          expedita excepturi aspernatur provident quos atque natus. Soluta,
+          animi voluptas! Vel, magnam rem!
+        </p>
+      </div>
+    </div>
+    <footer>
+      <p>&copy; 2023 Nathan's Page</p>
+    </footer>
+    <script>
+      function isElementInViewport(el) {
+        const rect = el.getBoundingClientRect();
+        return (
+          rect.top >= 0 &&
+          rect.left >= 0 &&
+          rect.bottom <=
+            (window.innerHeight || document.documentElement.clientHeight) &&
+          rect.right <=
+            (window.innerWidth || document.documentElement.clientWidth)
+        );
+      }
+
+      function handleSectionFade(section) {
+        const elements = section.querySelectorAll(".scrollFade");
+        elements.forEach((el) => {
+          if (isElementInViewport(el)) {
+            el.style.opacity = 1;
+          } else {
+            el.style.opacity = 0;
+          }
+        });
+      }
+
+      document.addEventListener("DOMContentLoaded", () => {
+        const sections = document.querySelectorAll(".section");
+        sections.forEach((section) => {
+          window.addEventListener("scroll", () => {
+            handleSectionFade(section);
+          });
+        });
+      });
+    </script>
+    <!-- <link rel="stylesheet" type="text/css" href="styles.css" /> -->
+    <!-- <script src="scripts.js"></script> -->
+  </body>
+</html>
